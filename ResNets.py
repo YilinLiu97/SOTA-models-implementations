@@ -1,4 +1,4 @@
-from functools improt partial
+from functools import partial
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -94,7 +94,7 @@ class ResNetLayer(nn.Module):
           super().__init__()
           downsampling = 2 if in_chns != out_chns else 1
           self.blocks = nn.Sequential(
-              block(in_chns, out_chns, *args, **kwargs, downsampling=downsampling),
+              block(in_chns, out_chns, downsampling=downsampling, *args, **kwargs),
               *[block(out_chns * block.expansion), 
                     out_channels, downsampling=1, *args, **kwargs) for _ in range(n - 1)]
           )
